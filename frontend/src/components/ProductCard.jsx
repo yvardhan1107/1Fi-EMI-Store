@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { getImageUrl } from "../services/api";
 
 function ProductCard({ product }) {
   const firstVariant = product.variants?.[0];
   const price = firstVariant ? Number(firstVariant.price) : 0;
   const mrp = firstVariant ? Number(firstVariant.mrp) : 0;
+  const discount = mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0;
 
   return (
     <div className="product-card">
@@ -18,7 +18,7 @@ function ProductCard({ product }) {
 
         {firstVariant?.imageUrl ? (
           <img
-            src={getImageUrl(firstVariant.imageUrl)}
+            src={firstVariant.imageUrl}
             alt={product.name}
           />
         ) : (

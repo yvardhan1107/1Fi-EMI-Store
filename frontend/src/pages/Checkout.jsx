@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { getImageUrl } from "../services/api";
 
 import Navbar from "../components/Navbar";
 
@@ -62,7 +61,7 @@ function Checkout() {
                   <div className="checkout-image">
                     {variant.imageUrl ? (
                       <img
-                        src={getImageUrl(variant.imageUrl)}
+                        src={variant.imageUrl}
                         alt={product.name}
                       />
                     ) : (
@@ -159,7 +158,7 @@ function Checkout() {
               <p className="small-label green-label">APPLICATION SUCCESSFUL</p>
               <h1>EMI Plan Confirmed!</h1>
               <p className="success-desc">
-                Your mutual fund backed EMI application for <strong>{product.name}</strong> ({variant.storage}, {variant.color}) has been submitted successfully.
+                 <strong>{product.name}</strong> ({variant.storage}, {variant.color}) has been submitted successfully.
               </p>
 
               <div className="checkout-card success-card">
