@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getImageUrl } from "../services/api";
 
 function ProductImage({ variant, productName }) {
   const [activeImage, setActiveImage] = useState(variant?.imageUrl);
@@ -27,7 +28,7 @@ function ProductImage({ variant, productName }) {
 
         {activeImage ? (
           <img
-            src={activeImage}
+            src={getImageUrl(activeImage)}
             alt={`${productName} ${variant?.color || ''}`}
           />
         ) : (

@@ -6,7 +6,15 @@ const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 
-app.use(cors());
+// Configure production CORS
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use(express.json());
 
 // Serve static images for product variants
@@ -14,7 +22,7 @@ app.use("/images", express.static(path.join(__dirname, "../public/images")));
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
-  res.status(200).json({ status: "ok" });
+  res.status(200).json({ status: "ok", environment: process.env.NODE_ENV || "development" });
 });
 
 // API Routes
